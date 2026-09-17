@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<section class="card form-card">
+    <h1>Create Student Account</h1>
+    <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label>Username</label>
+        <input name="username" required minlength="3" maxlength="30" autocomplete="username">
+        <label>Password</label>
+        <input type="password" name="password" required minlength="10" autocomplete="new-password">
+        <button class="button" type="submit">Register</button>
+    </form>
+</section>
+{% endblock %}

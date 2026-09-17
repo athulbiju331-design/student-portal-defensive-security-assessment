@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>Administrator Dashboard</h1>
+    <h2>Users</h2>
+    <table>
+        <tr><th>ID</th><th>Username</th><th>Role</th></tr>
+        {% for user in users %}
+        <tr><td>{{ user["id"] }}</td><td>{{ user["username"] }}</td><td>{{ user["role"] }}</td></tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section class="card">
+    <h2>Assignment Submissions</h2>
+    {% if assignments %}
+    <table>
+        <tr><th>Student</th><th>File</th><th>Date</th></tr>
+        {% for item in assignments %}
+        <tr>
+            <td>{{ item["username"] }}</td>
+            <td><a href="{{ url_for('download_upload', filename=item['filename']) }}">Stored file</a></td>
+            <td>{{ item["submitted_at"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No submissions.</p>
+    {% endif %}
+</section>
+{% endblock %}

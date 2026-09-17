@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>Welcome, {{ user["username"] }}</h1>
+    <p>Role: <strong>{{ user["role"] }}</strong></p>
+</section>
+
+<section class="card">
+    <h2>Submit Assignment</h2>
+    <form method="post" action="{{ url_for('submit_assignment') }}" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="file" name="assignment" required accept=".pdf,.doc,.docx,.txt">
+        <button class="button" type="submit">Upload</button>
+    </form>
+    <p class="hint">Maximum size: 5 MB. Allowed: PDF, DOC, DOCX, TXT.</p>
+</section>
+
+<section class="card">
+    <h2>Your Submissions</h2>
+    {% if assignments %}
+        <ul>
+        {% for item in assignments %}
+            <li>
+                {{ item["original_name"] }}
+                — {{ item["submitted_at"] }}
+                — <a href="{{ url_for('download_upload', filename=item['filename']) }}">Download</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No assignments submitted yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

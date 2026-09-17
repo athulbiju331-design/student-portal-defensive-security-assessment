@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Home - Student Portal{% endblock %}
+{% block content %}
+<section class="card hero">
+    <h1>Student Portal</h1>
+    <p>A small educational web application for threat modelling and secure configuration.</p>
+    {% if not session.get('user_id') %}
+        <a class="button" href="{{ url_for('login') }}">Student Login</a>
+        <a class="button secondary" href="{{ url_for('register') }}">Create Account</a>
+    {% else %}
+        <a class="button" href="{{ url_for('dashboard') }}">Open Dashboard</a>
+    {% endif %}
+</section>
+{% endblock %}

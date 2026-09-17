@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<section class="card form-card">
+    <h1>Student Login</h1>
+    <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label>Username</label>
+        <input name="username" required maxlength="30" autocomplete="username">
+        <label>Password</label>
+        <input type="password" name="password" required autocomplete="current-password">
+        <button class="button" type="submit">Login</button>
+    </form>
+    <p class="hint">Demo student: student / StudentDemo123!</p>
+</section>
+{% endblock %}
