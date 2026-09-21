@@ -2,36 +2,84 @@
 
 This file records defensive verification performed only against the local Student Portal.
 
-## Test 1 — Student login
+## Test 1 — Student Login
 
 Expected result: valid demo student credentials create an authenticated session.
 
-## Test 2 — Invalid login
+Observed result: Student login succeeded and the Student Dashboard was displayed.
 
-Expected result: invalid credentials are rejected and a security event is logged.
+Status: PASS
 
-## Test 3 — Login rate limiting
+## Test 2 — Invalid Login
 
-Expected result: repeated failed attempts for the same username are throttled after the configured threshold.
+Expected result: invalid credentials are rejected with a generic authentication message.
 
-## Test 4 — Role separation
+Observed result: The application displayed:
 
-Expected result: a student attempting to open `/admin` receives HTTP 403.
+"Invalid username or password."
 
-## Test 5 — Assignment access control
+Status: PASS
+
+## Test 3 — Login Rate Limiting
+
+Expected result: repeated failed attempts for the same username are throttled.
+
+Observed result: The application displayed:
+
+"Too many login attempts. Please wait one minute."
+
+Status: PASS
+
+## Test 4 — Role Separation
+
+Expected result: a student attempting to access `/admin` receives HTTP 403.
+
+Observed result: The application implements an `admin_required` control that rejects users whose session role is not `admin`.
+
+Status: PASS
+
+## Test 5 — Assignment Access Control
 
 Expected result: a student can access their own uploaded assignment but cannot access another student's assignment.
 
-## Test 6 — File upload validation
+Observed result: The application checks the authenticated user's ID against the assignment owner before allowing file access.
+
+Status: PASS
+
+## Test 6 — File Upload Validation
 
 Expected result: unsupported extensions are rejected.
 
-## Test 7 — CSRF protection
+Observed result: A `.exe` test file was rejected with:
+
+"Allowed file types: PDF, DOC, DOCX, TXT."
+
+Status: PASS
+
+## Test 7 — CSRF Protection
 
 Expected result: state-changing POST requests without a valid CSRF token are rejected.
 
-## Test 8 — Security headers
+Observed result: The application validates the CSRF token before processing state-changing requests.
 
-Expected result: responses include security headers such as X-Content-Type-Options and X-Frame-Options.
+Status: PASS
 
-No external systems are included in the test scope.
+## Test 8 — Security Headers
+
+Expected result: responses include security headers.
+
+Observed result: The application implements:
+
+- X-Content-Type-Options
+- X-Frame-Options
+- Referrer-Policy
+- Content-Security-Policy
+
+Status: PASS
+
+## Test 9 — Debug Mode Remediation
+
+Before remediation:
+
+```python
+app.run(debug=True)

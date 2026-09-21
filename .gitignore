@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local application data
+student_portal.db
+security.log
+uploads/
+
+# Environment and secrets
+.env

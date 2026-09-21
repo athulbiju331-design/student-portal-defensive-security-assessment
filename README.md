@@ -1,70 +1,54 @@
-# Student Portal Web Application — Threat Model & Secure Configuration
+# Student Portal - Defensive Security Assessment
 
-## Overview
+## EdVyro Cyber Security Task 5
 
-This is a small fictional Student Portal built with Python and Flask for a defensive cybersecurity learning project.
+This project is a defensive security assessment of a fictional Student Portal application running locally.
 
-The application demonstrates common web application components that can be threat-modelled:
+The assessment tests the application's configuration, authentication, input validation, dependencies, access control, and security logging.
 
-- Student registration and authentication
-- Student dashboard
-- Assignment upload
-- Administrator dashboard
-- SQLite database
-- File storage
-- Security logging
+## Scope
 
-## Security controls implemented
+The assessment is limited to the local Student Portal application running on:
 
-The application includes educational examples of:
+http://127.0.0.1:5000
 
-- Password hashing with Werkzeug
-- Parameterized SQL queries
-- Role-based access control
-- Server-side authorization checks
-- CSRF tokens
-- Login rate limiting
-- Secure session cookie attributes
-- Upload filename sanitization
-- File extension allow-list
-- Upload size limit
-- Security HTTP headers
-- Security event logging
-- Least-privilege style access checks
+No external systems, public IP addresses, or third-party applications were tested.
 
-## Demo accounts
+## Authorization
 
-Student:
-- Username: `student`
-- Password: `StudentDemo123!`
+The application is owned and controlled by the project author. Testing is performed only against the local training application for the EdVyro Cyber Security Task 5 assessment.
 
-Administrator:
-- Username: `admin`
-- Password: `AdminDemo123!`
+## Assessment Objectives
 
-These credentials are for the local demonstration only. Do not reuse them in a real system.
+- Review application security configuration
+- Test authentication controls
+- Test input and file-upload validation
+- Review dependency security
+- Verify authorization and access controls
+- Review security logging
+- Document security findings
+- Fix identified risks
+- Retest the implemented fixes
 
-## Run locally
+## Security Assessment Areas
 
-```bash
-python -m pip install -r requirements.txt
-python app.py
-```
+1. Configuration Security
+2. Authentication Security
+3. Input Validation
+4. File Upload Security
+5. Authorization and Access Control
+6. Dependency Security
+7. Security Logging
+8. Security Headers and Session Security
 
-Open:
+## Evidence
 
-`http://127.0.0.1:5000`
+Test results and supporting evidence are stored in the `evidence/` directory.
 
-## Project scope
+## Status
 
-This application is intentionally small and is intended for local defensive learning. No external systems should be scanned or tested.
+Assessment in progress.
 
-## Threat-model deliverables
+## Disclaimer
 
-The repository should also contain:
-
-- `docs/threat-model.md`
-- `docs/risk-register.md`
-- `docs/hardening-checklist.md`
-- `diagrams/threat-model.drawio`
-- `evidence/verification-notes.md`
+This project is for authorized defensive security testing in a local training environment only.
